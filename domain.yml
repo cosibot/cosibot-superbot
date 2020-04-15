@@ -18,6 +18,7 @@ slots:
     values:
     - en
     - de
+    initial_value: en
 
 responses:
   utter_language_selection:
