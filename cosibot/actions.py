@@ -18,11 +18,10 @@ class ActionLangDetect(Action):
     def run(self, dispatcher, tracker, domain):
 #        dispatcher.utter_message(text="detecting language")
         lang_detect_api = LangDetectAPI()
-        likely_language = restaurant_api.detect([tracker.latest_message.text]) #check the output of the tracker.latest_message
+        likely_language = lang_detect_api.detect([tracker.latest_message.text]) #check the output of the tracker.latest_message
         return [SlotSet("likely_language", likely_language)]
 
-# we need to update the domain to include the action and slot variable
-# and setup the action endpoint in endpoints.yml
+# we need to update the domain to include the action
 
 ### To check the language detect service use this commented code below:
 #
