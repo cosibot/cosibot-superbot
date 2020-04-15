@@ -16,8 +16,8 @@ slots:
   language_slot:
     type: categorical
     values:
-    - "en"
-    - "de"
+    - en
+    - de
 
 responses:
   utter_language_selection:
