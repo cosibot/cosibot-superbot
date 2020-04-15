@@ -7,7 +7,7 @@ intents:
   - thank
   # - thank_de
   - language_selection
-  - init_slot
+  #- init_slot
 
 entities:
   - language
