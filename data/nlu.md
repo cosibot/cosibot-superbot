@@ -7,7 +7,7 @@
 - [ge](language)
 - [de](language)
 
-## intent:greet_en
+## intent: greet
 - hey
 - hello
 - hi
@@ -15,20 +15,20 @@
 - good evening
 - hey there
 
-## intent:greet_de
+## intent: greet
 - Hallo
 - Guten Morgen
 - Guten Tag
 - Guten Abend
 - Wie gehts
 
-## intent:bye_en
+## intent: bye
 - bye
 - goodbye
 - see you around
 - see you later
 
-## intent:bye_de
+## intent: bye
 - Widersehen
 - Tschüss
 - Auf wiedersehen
@@ -36,15 +36,14 @@
 - Mach’s gut
 
 
-## intent:thank_en
-- Thanks
+## intent: thank
 - Thank you
 - Thank you so much
 - Thanks bot
 - Thanks for that
 - cheers
 
-## intent:thank_de
+## intent: thank
 - Danke
 - Vielen Dank
 - Vielen Dank für deine Hilfe

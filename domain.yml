@@ -1,18 +1,27 @@
 intents:
-  - greet_en
-  - greet_de
-  - bye_en
-  - bye_de
-  - thank_en
-  - thank_de
+  - start
+  - greet
+  # - greet_de
+  - bye
+  # - bye_de
+  - thank
+  # - thank_de
   - language_selection
+  - init_slot
 
 entities:
   - language
 
-templates:
+slots:
+  language_slot:
+    type: categorical
+    values:
+    - "en"
+    - "de"
+
+responses:
   utter_language_selection:
-    - text: "OK, I switch to {language}"
+    - text: "OK, I switch to {language_slot}"
   utter_noworries_en:
     - text: "No worries!"
   utter_greet_en:
@@ -29,21 +38,14 @@ templates:
 actions:
   - action_ask_language
   - action_init_slot
-  - utter_language_selection
-  - utter_noworries_en
-  - utter_greet_en
-  - utter_bye_en
-  - utter_noworries_de
-  - utter_greet_de
-  - utter_bye_de
+  # - utter_language_selection
+  # - utter_noworries_en
+  # - utter_greet_en
+  # - utter_bye_en
+  # - utter_noworries_de
+  # - utter_greet_de
+  # - utter_bye_de
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-slots:
-   language_slot:
-      type: categorical
-      values:
-      - en
-      - de
