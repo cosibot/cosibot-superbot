@@ -17,6 +17,7 @@ from rasa_sdk import Action#, Tracker
 # from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.events import SlotSet
+from rasa_sdk.events import FollowupAction
 
 class AskLanguage(Action):
 
@@ -26,6 +27,7 @@ class AskLanguage(Action):
      def run(self, dispatcher, tracker, domain):
 
          dispatcher.utter_message(text="Hello, which language would you like to use? English/Englisch or/oder German/Deutsch")
+  #       FollowupAction(action_listen)
 
          return [UserUtteranceReverted()]
 

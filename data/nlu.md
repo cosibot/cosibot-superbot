@@ -3,6 +3,8 @@
 - abc
 
 ## intent: language_selection
+- en
+- de
 - [English](language)
 - [Englisch](language)
 - [German](language)

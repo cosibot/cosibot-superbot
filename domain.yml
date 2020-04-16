@@ -1,13 +1,16 @@
 intents:
-  - start
+
   - greet
   # - greet_de
   - bye
   # - bye_de
   - thank
   # - thank_de
-  - language_selection
+  - language_selection:
+      triggers: action_init_slot
   #- init_slot
+  - start:
+      triggers: action_ask_language
 
 entities:
   - language
