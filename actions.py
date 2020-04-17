@@ -52,5 +52,6 @@ class SetSlotValue(Action):
              return [SlotSet("language_slot", 'de'),
                       FollowupAction("utter_language_selection")]
          else:
-             return [FollowupAction("utter_language_selection")]
+             return [SlotSet("language_slot", 'en'),
+                      FollowupAction("utter_language_selection")]
         
