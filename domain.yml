@@ -19,9 +19,9 @@ slots:
   language_slot:
     type: categorical
     values:
-    - en
-    - de
-    initial_value: en
+    - English
+    - German
+    initial_value: English
 
 responses:
   utter_language_selection:

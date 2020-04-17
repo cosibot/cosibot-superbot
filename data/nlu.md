@@ -3,15 +3,15 @@
 - abc
 
 ## intent: language_selection
-- en
-- de
+- [english](language:English)
 - [English](language)
-- [Englisch](language)
-- [German](language)
-- [Deutsch](language)
-- [en](language)
-- [ge](language)
-- [de](language)
+- [Englisch](language:English)
+- [german](language:German)
+- [German](language:German)
+- [Deutsch](language:German)
+- [en](language:English)
+- [ge](language:German)
+- [de](language:German)
 
 ## intent: greet
 - hey

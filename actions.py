@@ -37,18 +37,15 @@ class SetSlotValue(Action):
 
      def run(self, dispatcher, tracker, domain):
          lang_slot = tracker.current_state()
-         #lang_slot = next(tracker.get_latest_entity_values("language"), None)
          dispatcher.utter_message(text=str(lang_slot))
-         logger.debug("Stop point!")
-         return [UserUtteranceReverted()]
 
-        #  slot_value = tracker.get_slot("language_slot")
-        #  entity_value = tracker.get_latest_entity_values("language")
+         entity_value = str(tracker.latest_message['entities'][0]['value'])
 
-        #  if slot_value is None and entity_value is not None:
-        #      dispatcher.utter_message(text = "type a" + tracker.get_slot("language_slot"))
-        #      return [SlotSet("language_slot", entity_value)]
-        #  else:
-        #      dispatcher.utter_message(text = "type b" + tracker.get_slot("language_slot"))
-        #      return [SlotSet("language_slot", "en")]
-        
+         if entity_value in ["German", "English"]:
+             #dispatcher.utter_message(text=str(entity_value))
+             return [SlotSet("language_slot", entity_value),
+                     FollowupAction("utter_language_selection")]
+         else:
+             #dispatcher.utter_message(text="not acceptable language")
+             return [UserUtteranceReverted()]
+
