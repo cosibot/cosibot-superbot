@@ -20,6 +20,7 @@ pipeline:
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
+- name: language_detection.lang_change_policy.LangChangePolicy
 - name: MemoizationPolicy
   max_history: 1
 - name: MappingPolicy
