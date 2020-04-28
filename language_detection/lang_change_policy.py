@@ -72,8 +72,10 @@ class LangChangePolicy(Policy):
         latest_lang_record = get_value_and_confidence()
         if get_value_and_confidence(skip=1):
             previous_lang_record = get_value_and_confidence(skip=1)
-        else:
+        elif tracker.get_slot("language_slot"):
             previous_lang_record = dict(value=tracker.get_slot("language_slot"), confidence=1.0)
+        else:
+            previous_lang_record = None
         
         logger.debug(f"language present record is: {latest_lang_record}")
         logger.debug(f"previous language record is: {previous_lang_record}")
