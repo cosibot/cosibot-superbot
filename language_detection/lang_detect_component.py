@@ -16,8 +16,8 @@ class CustomLangDetect(Component):
        in th pipeline in order to trigger a switch agent action"""
 
     name = "language_detect"
-    provides = ["entities"]
-    requires = ["text"]
+    # provides = ["entities"]
+    # requires = ["text"]
 
 
     # Which components are required by this component.
@@ -67,7 +67,7 @@ class CustomLangDetect(Component):
 
         entity = {"value": value,
                   "confidence": confidence,
-                  "entity": "language_code",
+                  "entity": "bot_language_code",
                   "extractor": "language_detector"}
 
         return entity
@@ -85,7 +85,7 @@ class CustomLangDetect(Component):
         of components previous to this one."""
 
         if not self._model:
-            language_codes = None
+            language_code = None
         
         else:
             text = message.get("text")

@@ -60,18 +60,21 @@ class LangChangePolicy(Policy):
             if fetcher is not None:
                 entities_list = fetcher.as_dict().get("parse_data").get("entities")
                 for d in entities_list: # d stands for dictionary...
-                    if d['entity'] == 'language_code':
+                    if d['entity'] == 'bot_language_code':
                         lang_value = d['value']
                         lang_conf = d['confidence']
                         value_and_conf = dict(value=lang_value,confidence=lang_conf)
-                return value_and_conf
+                        return value_and_conf
 
         def lang_detect_above_threshold_Q(record):
             return (record.get('confidence') > self.lang_detect_threshold) 
                     
         latest_lang_record = get_value_and_confidence()
-        previous_lang_record = get_value_and_confidence(skip=1)
-
+        if get_value_and_confidence(skip=1):
+            previous_lang_record = get_value_and_confidence(skip=1)
+        else:
+            previous_lang_record = dict(value=tracker.get_slot("language_slot"), confidence=1.0)
+        
         logger.debug(f"language present record is: {latest_lang_record}")
         logger.debug(f"previous language record is: {previous_lang_record}")
         
