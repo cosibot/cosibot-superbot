@@ -14,7 +14,7 @@ intents:
 
 entities:
   - language
-  - language_code
+  - bot_language_code
 
 slots:
   language_slot:

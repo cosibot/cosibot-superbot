@@ -82,11 +82,24 @@ class LangChangePolicy(Policy):
         
         result = self._default_predictions(domain)
 
-        if (previous_lang_record is not None and
+        if (
+            tracker.latest_action_name == self.fallback_action_name
+            and tracker.latest_action_name != ACTION_LISTEN_NAME
+        ):
+            logger.debug(
+                "Predicted 'action_listen' after fallback action '{}'".format(
+                    self.fallback_action_name
+                )
+            )
+            result = self._default_predictions(domain)
+            idx = domain.index_for_action(ACTION_LISTEN_NAME)
+            result[idx] = 1.0
+
+        elif (previous_lang_record is not None and
            all([lang_detect_above_threshold_Q(x) for x in [latest_lang_record, previous_lang_record]]) and
            previous_lang_record.get('value') != latest_lang_record.get('value')):
             
-            idx = domain.index_for_action(f"{self.fallback_action_name}")
+            idx = domain.index_for_action(self.fallback_action_name)
             if idx is None:
                 raise_warning(
                     f"LangChangePolicy tried to predict unknown "
