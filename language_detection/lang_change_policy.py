@@ -8,7 +8,7 @@ import rasa.utils.io
 
 from rasa.core.domain import Domain #, InvalidDomain
 from rasa.core.policies import Policy
-# from rasa.core.actions.action import ACTION_LISTEN_NAME #don't know if needed
+from rasa.core.actions.action import ACTION_LISTEN_NAME
 
 from rasa.core.trackers import DialogueStateTracker
 from rasa.core.constants import FALLBACK_POLICY_PRIORITY
@@ -67,7 +67,8 @@ class LangChangePolicy(Policy):
                         return value_and_conf
 
         def lang_detect_above_threshold_Q(record):
-            return (record.get('confidence') > self.lang_detect_threshold) 
+            if record and record is not None:
+                return (record.get('confidence') > self.lang_detect_threshold) 
                     
         latest_lang_record = get_value_and_confidence()
         if get_value_and_confidence(skip=1):
@@ -95,10 +96,11 @@ class LangChangePolicy(Policy):
             idx = domain.index_for_action(ACTION_LISTEN_NAME)
             result[idx] = 1.0
 
-        elif (previous_lang_record is not None and
-           all([lang_detect_above_threshold_Q(x) for x in [latest_lang_record, previous_lang_record]]) and
-           previous_lang_record.get('value') != latest_lang_record.get('value')):
-            
+        elif (
+            previous_lang_record is not None and
+            all([lang_detect_above_threshold_Q(x) for x in [latest_lang_record, previous_lang_record]]) and
+            previous_lang_record.get('value') != latest_lang_record.get('value')
+            ):
             idx = domain.index_for_action(self.fallback_action_name)
             if idx is None:
                 raise_warning(
