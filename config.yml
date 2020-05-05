@@ -2,7 +2,7 @@
 # https://rasa.com/docs/rasa/nlu/components/
 language: en, de, pt
 pipeline:
-  - name: language_detection.lang_detect_component.CustomLangDetect
+#   - name: language_detection.lang_detect_component.CustomLangDetect
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
@@ -23,6 +23,7 @@ policies:
 - name: language_detection.lang_change_policy.LangChangePolicy
   lang_detect_threshold: 0.7
   fallback_action_name: "action_ask_language"
+  model_path: "./language_detection/lid.176.ftz"
 - name: MemoizationPolicy
   max_history: 1
 - name: MappingPolicy
