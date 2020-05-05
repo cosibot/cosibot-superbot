@@ -48,11 +48,11 @@ class LangChangePolicy(Policy):
         self.lang_detect_threshold = lang_detect_threshold
         self.fallback_action_name = fallback_action_name
         self.model_path = model_path
-        print(self.model_path)
+        # print(self.model_path)
         self.model = model or self._default_model(self.model_path)
 
         # attributes that need to be restored after loading
-        self._pickle_params = ["model"]
+        # self._pickle_params = ["model"]
         
         logger.debug(f"Adopted LCP threshold: {self.lang_detect_threshold}")
         logger.debug(f"LCP action to fall out: {self.fallback_action_name}")
@@ -62,9 +62,9 @@ class LangChangePolicy(Policy):
         print(path)
         return load_model(path)
 
-    @property
-    def _state(self):
-        return {attr: getattr(self, attr) for attr in self._pickle_params}
+    # @property
+    # def _state(self):
+    #     return {attr: getattr(self, attr) for attr in self._pickle_params}
         
     def train(
         self,
@@ -83,7 +83,7 @@ class LangChangePolicy(Policy):
             if fetcher is not None:
                 user_utter = fetcher.as_dict().get("text")
                 language_prediction = self.model.predict(user_utter)
-                print(language_prediction)
+                # print(language_prediction)
                 return language_prediction
 
         def Q_lang_detect_above_threshold(prediction):
@@ -95,7 +95,7 @@ class LangChangePolicy(Policy):
             previous_lang_prediction = predict_language(skip=1)
         elif tracker.get_slot("language_slot"):
             language_code = tracker.get_slot("language_slot")
-            previous_lang_prediction = ((f'__label__{language_code}'), np.array([1.0])) # to have the same type as fasttext model output
+            previous_lang_prediction = (((f'__label__{language_code}'),), np.array([1.0])) # to have the same type as fasttext model output
         else:
             previous_lang_prediction = None
         
