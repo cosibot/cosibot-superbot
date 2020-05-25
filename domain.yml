@@ -1,0 +1,55 @@
+intents:
+
+  - greet
+  # - greet_de
+  - bye
+  # - bye_de
+  - thank
+  # - thank_de
+  - language_selection:
+      triggers: action_init_slot
+  #- init_slot
+  - start:
+      triggers: action_ask_language
+
+entities:
+  - language
+
+slots:
+  language_slot:
+    type: categorical
+    values:
+    - English
+    - German
+    initial_value: English
+
+responses:
+  utter_language_selection:
+    - text: "OK, I switch to {language_slot}"
+  utter_noworries_en:
+    - text: "No worries!"
+  utter_greet_en:
+    - text: "Hi"
+  utter_bye_en:
+    - text: "Bye!"
+  utter_noworries_de:
+    - text: "Bitte gerne"
+  utter_greet_de:
+    - text: "Hallo"
+  utter_bye_de:
+    - text: "Auf Widersehen"
+
+actions:
+  - action_ask_language
+  - action_init_slot
+  # - utter_language_selection
+  # - utter_noworries_en
+  # - utter_greet_en
+  # - utter_bye_en
+  # - utter_noworries_de
+  # - utter_greet_de
+  # - utter_bye_de
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
